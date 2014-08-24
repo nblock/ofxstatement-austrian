@@ -31,6 +31,10 @@ class RaiffeisenCsvParser(CsvStatementParser):
 
     def parse_record(self, line):
         """Parse a single record."""
+        # Currency
+        if not self.statement.currency:
+            self.statement.currency = line[4]
+
         # Cleanup parts
         line[3] = fix_amount_string(line[3])
         line[1] = clean_multiple_whitespaces(line[1])
@@ -53,7 +57,6 @@ class RaiffeisenPlugin(Plugin):
         parser = RaiffeisenCsvParser(f)
         parser.statement.account_id = self.settings['account']
         parser.statement.bank_id = self.settings.get('bank', 'Raiffeisen')
-        parser.statement.currency = self.settings.get('currency', 'EUR')
         return parser
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4 smartindent autoindent

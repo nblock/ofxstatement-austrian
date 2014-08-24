@@ -22,6 +22,7 @@ class TestRaiffeisenCsvParser(unittest.TestCase):
         self.assertEqual(len(self.statement.lines), 7)
         self.assertEqual(self.statement.start_balance, 0.0)
         self.assertAlmostEqual(self.statement.end_balance, -157.89)
+        self.assertEqual(self.statement.currency, "EUR")
         self.assertEqual(self.statement.start_date, datetime.datetime(2013, 6, 28, 0, 0))
         self.assertEqual(self.statement.end_date, datetime.datetime(2013, 7, 4, 0, 0))
 
