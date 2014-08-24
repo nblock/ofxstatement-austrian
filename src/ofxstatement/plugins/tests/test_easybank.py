@@ -4,6 +4,7 @@
 import datetime
 import os
 import unittest
+from ofxstatement.statement import generate_transaction_id
 
 from ofxstatement.plugins.easybank import EasybankCreditCardCsvParser, EasybankGiroCsvParser
 
@@ -52,10 +53,6 @@ class TestEasybankCreditCardCsvParser(unittest.TestCase):
 class TestEasybankGiroCsvParser(unittest.TestCase):
     """Unit tests for EasybankGiroCsvParser."""
 
-    def calculate_hash(self, line):
-        """A helper to calculate the ID."""
-        return str(abs(hash((line.date, line.memo, line.amount))))
-
     def setUp(self):
         csvfile = os.path.join(os.path.dirname(__file__), 'samples', 'easybank-giro.csv')
         with open(csvfile, 'r', encoding='cp1252') as fin:
@@ -78,7 +75,7 @@ class TestEasybankGiroCsvParser(unittest.TestCase):
         self.assertEqual(l.payee, l.memo)
         self.assertEqual(l.trntype, "DEBIT")
         self.assertEqual(l.date, datetime.datetime(2014, 1, 1, 0, 0))
-        self.assertEqual(l.id, self.calculate_hash(l))
+        self.assertEqual(l.id, generate_transaction_id(l))
 
     def test_line1_interest_earned(self):
         l = self.statement.lines[1]
@@ -88,7 +85,7 @@ class TestEasybankGiroCsvParser(unittest.TestCase):
         self.assertEqual(l.payee, l.memo)
         self.assertEqual(l.trntype, "CREDIT")
         self.assertEqual(l.date, datetime.datetime(2014, 1, 1, 0, 0))
-        self.assertEqual(l.id, self.calculate_hash(l))
+        self.assertEqual(l.id, generate_transaction_id(l))
 
     def test_line2_debit_with_iban_bic(self):
         l = self.statement.lines[2]
@@ -98,7 +95,7 @@ class TestEasybankGiroCsvParser(unittest.TestCase):
         self.assertEqual(l.payee, "Payment receiver (AT098765432109876543 ABCDEF1G235)")
         self.assertEqual(l.trntype, "DEBIT")
         self.assertEqual(l.date, datetime.datetime(2014, 1, 4, 0, 0))
-        self.assertEqual(l.id, self.calculate_hash(l))
+        self.assertEqual(l.id, generate_transaction_id(l))
 
     def test_line3_debit_legacy_bank_account(self):
         l = self.statement.lines[3]
@@ -108,7 +105,7 @@ class TestEasybankGiroCsvParser(unittest.TestCase):
         self.assertEqual(l.payee, "Amazon *Mktplce EU-AT (01234567890 01234)")
         self.assertEqual(l.trntype, "DEBIT")
         self.assertEqual(l.date, datetime.datetime(2014, 1, 8, 0, 0))
-        self.assertEqual(l.id, self.calculate_hash(l))
+        self.assertEqual(l.id, generate_transaction_id(l))
 
     def test_line4_debit_iban_only(self):
         l = self.statement.lines[4]
@@ -118,7 +115,7 @@ class TestEasybankGiroCsvParser(unittest.TestCase):
         self.assertEqual(l.payee, "Payment receiver (AT098765432109876543)")
         self.assertEqual(l.trntype, "DEBIT")
         self.assertEqual(l.date, datetime.datetime(2014, 1, 19, 0, 0))
-        self.assertEqual(l.id, self.calculate_hash(l))
+        self.assertEqual(l.id, generate_transaction_id(l))
 
     def test_line5_debit_withdraw(self):
         l = self.statement.lines[5]
@@ -128,7 +125,7 @@ class TestEasybankGiroCsvParser(unittest.TestCase):
         self.assertEqual(l.payee, "AUTOMAT 01234567 K1 27.07.UM 18.57")
         self.assertEqual(l.trntype, "DEBIT")
         self.assertEqual(l.date, datetime.datetime(2014, 1, 28, 0, 0))
-        self.assertEqual(l.id, self.calculate_hash(l))
+        self.assertEqual(l.id, generate_transaction_id(l))
 
     def test_line6_debit_with_more_text_before_check_no(self):
         l = self.statement.lines[6]
@@ -138,7 +135,7 @@ class TestEasybankGiroCsvParser(unittest.TestCase):
         self.assertEqual(l.payee, "Foobar XZY service AG (AT098765432109876543 ABCDEF1G235)")
         self.assertEqual(l.trntype, "DEBIT")
         self.assertEqual(l.date, datetime.datetime(2014, 1, 31, 0, 0))
-        self.assertEqual(l.id, self.calculate_hash(l))
+        self.assertEqual(l.id, generate_transaction_id(l))
 
     def test_line7_debit_with_more_text_before_check_no_and_without_banking_infos(self):
         l = self.statement.lines[7]
@@ -148,7 +145,7 @@ class TestEasybankGiroCsvParser(unittest.TestCase):
         self.assertEqual(l.payee, "Somebody someony somewhere")
         self.assertEqual(l.trntype, "DEBIT")
         self.assertEqual(l.date, datetime.datetime(2014, 2, 21, 0, 0))
-        self.assertEqual(l.id, self.calculate_hash(l))
+        self.assertEqual(l.id, generate_transaction_id(l))
 
     def test_line8_credit_iban_bic(self):
         l = self.statement.lines[8]
@@ -158,6 +155,6 @@ class TestEasybankGiroCsvParser(unittest.TestCase):
         self.assertEqual(l.payee, "Some person (AT098765432109876543 ABCDEF1G235)")
         self.assertEqual(l.trntype, "CREDIT")
         self.assertEqual(l.date, datetime.datetime(2014, 2, 28, 0, 0))
-        self.assertEqual(l.id, self.calculate_hash(l))
+        self.assertEqual(l.id, generate_transaction_id(l))
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4 smartindent autoindent

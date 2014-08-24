@@ -4,15 +4,12 @@
 import datetime
 import os
 import unittest
+from ofxstatement.statement import generate_transaction_id
 
 from ofxstatement.plugins.livebank import LivebankCsvParser
 
 class TestLivebankCsvParser(unittest.TestCase):
     """Unit tests for LivebankCsvParser."""
-
-    def calculate_hash(self, line):
-        """A helper to calculate the ID."""
-        return str(abs(hash((line.date, line.memo, line.amount))))
 
     def setUp(self):
         csvfile = os.path.join(os.path.dirname(__file__), 'samples', 'livebank.csv')
@@ -36,7 +33,7 @@ class TestLivebankCsvParser(unittest.TestCase):
                 "A name, A text, REF: XXXXXXXXXXXXXXXXXXXXXXXXXXXX")
         self.assertEqual(l.trntype, "CREDIT")
         self.assertEqual(l.date, datetime.datetime(2013, 7, 3, 0, 0))
-        self.assertEqual(l.id, self.calculate_hash(l))
+        self.assertEqual(l.id, generate_transaction_id(l))
 
     def test_line1_debit(self):
         l = self.statement.lines[1]
@@ -46,7 +43,7 @@ class TestLivebankCsvParser(unittest.TestCase):
                 "A text, A reference, A text")
         self.assertEqual(l.trntype, "DEBIT")
         self.assertEqual(l.date, datetime.datetime(2013, 6, 10, 0, 0))
-        self.assertEqual(l.id, self.calculate_hash(l))
+        self.assertEqual(l.id, generate_transaction_id(l))
 
     def test_line2_credit(self):
         l = self.statement.lines[2]
@@ -56,6 +53,6 @@ class TestLivebankCsvParser(unittest.TestCase):
                 "A name, A text, REF: XXXXXXXXXXXXXXXXXXXXXXXXXXXX")
         self.assertEqual(l.trntype, "CREDIT")
         self.assertEqual(l.date, datetime.datetime(2013, 6, 5, 0, 0))
-        self.assertEqual(l.id, self.calculate_hash(l))
+        self.assertEqual(l.id, generate_transaction_id(l))
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4 smartindent autoindent
