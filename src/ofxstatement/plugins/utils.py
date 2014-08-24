@@ -6,6 +6,6 @@ def clean_multiple_whitespaces(uncleaned_string):
 
 def fix_amount_string(amount):
     """Replace »,« with ».« to make the amount parseable."""
-    return amount.replace(',', '.')
+    return amount.replace('.', '').replace(',', '.')
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4 smartindent autoindent

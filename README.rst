@@ -3,6 +3,7 @@ austrian banks. It is a plugin for `ofxstatement`_.
 
 CSV statements from these banks are currently supported:
 
+* Livebank (CSV)
 * Raiffeisenbank Austria (CSV)
 
 .. _ofxstatement: https://github.com/kedder/ofxstatement

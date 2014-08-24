@@ -32,7 +32,10 @@ setup(name="ofxstatement-austrian",
       namespace_packages=["ofxstatement", "ofxstatement.plugins"],
       entry_points={
           'ofxstatement':
-          ['raiffeisen = ofxstatement.plugins.raiffeisen:RaiffeisenPlugin']
+          [
+              'livebank = ofxstatement.plugins.livebank:LivebankPlugin',
+              'raiffeisen = ofxstatement.plugins.raiffeisen:RaiffeisenPlugin',
+          ]
           },
       install_requires=['ofxstatement'],
       test_suite="ofxstatement.plugins.tests",

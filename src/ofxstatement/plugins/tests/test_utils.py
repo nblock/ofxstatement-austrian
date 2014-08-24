@@ -35,10 +35,10 @@ class TestFixAmountString(unittest.TestCase):
     def test_integer_string(self):
         self.assertEqual(fix_amount_string("11"), "11")
 
-    def test_already_ok_string(self):
-        self.assertEqual(fix_amount_string("1.23"), "1.23")
-
     def test_no_thousand_mark(self):
         self.assertEqual(fix_amount_string("1,23"), "1.23")
+
+    def test_with_thousand_mark(self):
+        self.assertEqual(fix_amount_string("100.234,23"), "100234.23")
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4 smartindent autoindent
