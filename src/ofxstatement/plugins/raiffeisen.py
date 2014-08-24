@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # This file is part of ofxstatement-austrian. See README.rst for more information.
 
 import csv
