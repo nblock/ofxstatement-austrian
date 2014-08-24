@@ -33,6 +33,7 @@ setup(name="ofxstatement-austrian",
       entry_points={
           'ofxstatement':
           [
+              'easybank = ofxstatement.plugins.easybank:EasybankPlugin',
               'ing-diba = ofxstatement.plugins.ingdiba:IngDiBaPlugin',
               'livebank = ofxstatement.plugins.livebank:LivebankPlugin',
               'raiffeisen = ofxstatement.plugins.raiffeisen:RaiffeisenPlugin',
