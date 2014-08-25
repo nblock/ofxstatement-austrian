@@ -1,4 +1,7 @@
-A collection of parsers for propriatory statement formats, produced by certain
+.. image:: https://travis-ci.org/nblock/ofxstatement-austrian.svg?branch=master
+    :target: https://travis-ci.org/nblock/ofxstatement-austrian
+
+A collection of parsers for proprietary statement formats, produced by certain
 austrian banks. It is a plugin for `ofxstatement`_.
 
 CSV statements from these banks are currently supported:
