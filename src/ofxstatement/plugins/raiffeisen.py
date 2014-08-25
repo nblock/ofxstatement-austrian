@@ -49,7 +49,7 @@ class RaiffeisenCsvParser(CsvStatementParser):
 
 
 class RaiffeisenPlugin(Plugin):
-    """Raiffeisenbank Austria (CSV)"""
+    """Raiffeisenbank (CSV)"""
 
     def get_parser(self, filename):
         """Get a parser instance."""

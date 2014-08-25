@@ -16,7 +16,7 @@ CSV statements from these banks are currently supported:
 
   - Money market account
 
-* Raiffeisenbank Austria (CSV)
+* Raiffeisenbank (CSV)
 
   - Giro account
 
