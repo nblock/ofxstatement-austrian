@@ -6,5 +6,10 @@ python:
   - "3.4"
 install:
   - pip install ofxstatement --use-mirrors
+  - pip install coverage --use-mirrors
+  - pip install python-coveralls --use-mirrors
 script:
-  - python setup.py test -v
+  - coverage run --source=src/ofxstatement setup.py test -v
+  - python setup.py install
+after_success:
+  coveralls
