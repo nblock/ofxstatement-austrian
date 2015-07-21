@@ -56,7 +56,7 @@ class RaiffeisenPlugin(Plugin):
         encoding = self.settings.get('charset', 'cp1252')
         f = open(filename, 'r', encoding=encoding)
         parser = RaiffeisenCsvParser(f)
-        parser.statement.account_id = self.settings['account']
+        parser.statement.account_id = self.settings.get('account', 'default')
         parser.statement.bank_id = self.settings.get('bank', 'Raiffeisen')
         return parser
 
