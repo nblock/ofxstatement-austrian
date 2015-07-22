@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-# This file is part of ofxstatement-austrian. See README.rst for more information.
+# This file is part of ofxstatement-austrian.
+# See README.rst for more information.
 
 import csv
-from ofxstatement.plugin import Plugin
-from ofxstatement.parser import CsvStatementParser
-from ofxstatement.statement import generate_transaction_id
 from ofxstatement import statement
-from ofxstatement.plugins.utils import clean_multiple_whitespaces, fix_amount_string
+from ofxstatement.parser import CsvStatementParser
+from ofxstatement.plugin import Plugin
+from ofxstatement.statement import generate_transaction_id
+from ofxstatement.plugins.utils import \
+    clean_multiple_whitespaces, fix_amount_string
 
 
 class RaiffeisenCsvParser(CsvStatementParser):
@@ -15,10 +17,10 @@ class RaiffeisenCsvParser(CsvStatementParser):
     date_format = "%d.%m.%Y"
 
     mappings = {
-                "date": 0,
-                "memo": 1,
-                "amount": 3,
-                }
+        "date": 0,
+        "memo": 1,
+        "amount": 3,
+        }
 
     def parse(self):
         """Parse."""

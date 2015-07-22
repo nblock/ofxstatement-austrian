@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# This file is part of ofxstatement-austrian. See README.rst for more information.
+# This file is part of ofxstatement-austrian.
+# See README.rst for more information.
 
 import csv
 from ofxstatement.plugin import Plugin
@@ -15,10 +16,10 @@ class IngDiBaCsvParser(CsvStatementParser):
     date_format = "%d.%m.%Y"
 
     mappings = {
-                "memo": 1,
-                "date": 2,
-                "amount": 4,
-                }
+        "memo": 1,
+        "date": 2,
+        "amount": 4,
+        }
 
     def parse(self):
         """Parse."""

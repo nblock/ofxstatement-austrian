@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# This file is part of ofxstatement-austrian. See README.rst for more information.
+# This file is part of ofxstatement-austrian.
+# See README.rst for more information.
 
 import datetime
 import os
@@ -8,11 +9,13 @@ from ofxstatement.statement import generate_transaction_id
 
 from ofxstatement.plugins.ingdiba import IngDiBaCsvParser
 
+
 class TestLivebankCsvParser(unittest.TestCase):
     """Unit tests for IngDiBaCsvParser."""
 
     def setUp(self):
-        csvfile = os.path.join(os.path.dirname(__file__), 'samples', 'ing-diba.csv')
+        csvfile = os.path.join(
+            os.path.dirname(__file__), 'samples', 'ing-diba.csv')
         with open(csvfile, 'r', encoding='iso-8859-1') as fin:
             self.statement = IngDiBaCsvParser(fin).parse()
 
@@ -22,8 +25,10 @@ class TestLivebankCsvParser(unittest.TestCase):
         self.assertAlmostEqual(self.statement.end_balance, -992.03)
         self.assertEqual(self.statement.currency, "EUR")
         self.assertEqual(self.statement.account_id, "12345678001")
-        self.assertEqual(self.statement.start_date, datetime.datetime(2013, 8, 13, 0, 0))
-        self.assertEqual(self.statement.end_date, datetime.datetime(2013, 12, 31, 0, 0))
+        self.assertEqual(
+            self.statement.start_date, datetime.datetime(2013, 8, 13, 0, 0))
+        self.assertEqual(
+            self.statement.end_date, datetime.datetime(2013, 12, 31, 0, 0))
 
     def test_line0_interest_earned(self):
         l = self.statement.lines[0]

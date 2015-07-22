@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-# This file is part of ofxstatement-austrian. See README.rst for more information.
+# This file is part of ofxstatement-austrian.
+# See README.rst for more information.
 
 import csv
 import re
-from ofxstatement.plugin import Plugin
-from ofxstatement.parser import CsvStatementParser
-from ofxstatement.statement import generate_transaction_id
 from ofxstatement import statement
-from ofxstatement.plugins.utils import clean_multiple_whitespaces, fix_amount_string
+from ofxstatement.parser import CsvStatementParser
+from ofxstatement.plugin import Plugin
+from ofxstatement.statement import generate_transaction_id
+from ofxstatement.plugins.utils \
+    import clean_multiple_whitespaces, fix_amount_string
+
 
 class EasybankCsvParser(CsvStatementParser):
     """The csv parser for Easybank (base)."""
@@ -23,11 +26,11 @@ class EasybankCreditCardCsvParser(EasybankCsvParser):
     """The csv parser for Easybank (credit card)."""
 
     mappings = {
-                "memo": 1,
-                "id": 2,
-                "date": 3,
-                "amount": 5,
-                }
+        "memo": 1,
+        "id": 2,
+        "date": 3,
+        "amount": 5,
+        }
 
     def parse(self):
         """Parse."""
@@ -71,15 +74,16 @@ class EasybankGiroCsvParser(EasybankCsvParser):
     """The csv parser for Easybank (giro)."""
 
     mappings = {
-                "check_no": 1,
-                "memo": 2,
-                "payee": 3,
-                "date": 4,
-                "amount": 6,
-                }
+        "check_no": 1,
+        "memo": 2,
+        "payee": 3,
+        "date": 4,
+        "amount": 6,
+        }
 
     reg_description = re.compile(r'[A-Z]{2}/[0-9]{9}')
-    reg_iban = re.compile(r'([A-Z]{6}[A-Z0-9]{2}[^\s]*)?\s?([A-Z]{2}[0-9]{10,34})\s(.*)')
+    reg_iban = re.compile(
+        r'([A-Z]{6}[A-Z0-9]{2}[^\s]*)?\s?([A-Z]{2}[0-9]{10,34})\s(.*)')
     reg_legacy = re.compile(r'(.*)([0-9]{5,})\s([0-9]{6,})(.*)')
 
     def extract_check_no(self, description):
@@ -107,11 +111,12 @@ class EasybankGiroCsvParser(EasybankCsvParser):
                 # iban, bic and text
                 if iban_bic.group(1):
                     result = '{0} ({1} {2})'.format(iban_bic.group(3),
-                            iban_bic.group(2), iban_bic.group(1))
+                                                    iban_bic.group(2),
+                                                    iban_bic.group(1))
                 # iban only
                 else:
-                    result = '{0} ({1})'.format(iban_bic.group(3),
-                            iban_bic.group(2))
+                    result = '{0} ({1})'.format(
+                        iban_bic.group(3), iban_bic.group(2))
 
                 return parts[0], result
 
@@ -123,9 +128,8 @@ class EasybankGiroCsvParser(EasybankCsvParser):
                 else:
                     text = account_number.group(4).strip()
 
-                return parts[0], '{0} ({1} {2})'.format(text,
-                            account_number.group(3),
-                            account_number.group(2))
+                return parts[0], '{0} ({1} {2})'.format(
+                    text, account_number.group(3), account_number.group(2))
 
             # Could not extract anything useful, return parts as is.
             return parts[0], parts[1]

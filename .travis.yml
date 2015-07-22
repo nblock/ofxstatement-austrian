@@ -1,13 +1,20 @@
 # Configuration for travis
 language: python
+
 python:
   - "3.2"
   - "3.3"
   - "3.4"
+
 install:
   - pip install -r requirements/travis.txt --use-mirrors
+
+before_script:
+  - flake8 src setup.py
+
 script:
   - coverage run --source=src/ofxstatement setup.py test -v
   - python setup.py install
+
 after_success:
   coveralls

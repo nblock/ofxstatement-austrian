@@ -1,6 +1,7 @@
-#!/usr/bin/python3
-"""Setup
-"""
+#!/usr/bin/env python3
+# This file is part of ofxstatement-austrian.
+# See README.rst for more information.
+
 from setuptools import find_packages
 from distutils.core import setup
 
@@ -17,7 +18,8 @@ setup(name="ofxstatement-austrian",
       description=("Statement parser for several austrian banks"),
       long_description=long_description,
       license="GPLv3",
-      keywords=["ofxstatement", "easybank", "ing-diba", "livebank", "raiffeisen"],
+      keywords=[
+          "ofxstatement", "easybank", "ing-diba", "livebank", "raiffeisen"],
       classifiers=[
           "Development Status :: 3 - Alpha",
           "Programming Language :: Python :: 3",
@@ -47,3 +49,5 @@ setup(name="ofxstatement-austrian",
       include_package_data=True,
       zip_safe=True
       )
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4 smartindent autoindent
