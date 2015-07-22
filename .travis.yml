@@ -5,9 +5,7 @@ python:
   - "3.3"
   - "3.4"
 install:
-  - pip install ofxstatement --use-mirrors
-  - pip install coverage --use-mirrors
-  - pip install python-coveralls --use-mirrors
+  - pip install -r requirements/travis.txt --use-mirrors
 script:
   - coverage run --source=src/ofxstatement setup.py test -v
   - python setup.py install
