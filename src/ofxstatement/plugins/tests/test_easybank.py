@@ -66,15 +66,15 @@ class TestEasybankGiroCsvParser(unittest.TestCase):
             self.statement = EasybankGiroCsvParser(fin).parse()
 
     def test_statement_properties(self):
-        self.assertEqual(len(self.statement.lines), 9)
+        self.assertEqual(len(self.statement.lines), 10)
         self.assertEqual(self.statement.start_balance, 0.0)
-        self.assertAlmostEqual(self.statement.end_balance, -1572.84)
+        self.assertAlmostEqual(self.statement.end_balance, -1562.86)
         self.assertEqual(self.statement.currency, "EUR")
         self.assertEqual(self.statement.account_id, "AT123456789012345678")
         self.assertEqual(
             self.statement.start_date, datetime.datetime(2014, 1, 1, 0, 0))
         self.assertEqual(
-            self.statement.end_date, datetime.datetime(2014, 2, 28, 0, 0))
+            self.statement.end_date, datetime.datetime(2015, 10, 7, 0, 0))
 
     def test_line0_interest_paid(self):
         l = self.statement.lines[0]
@@ -168,6 +168,17 @@ class TestEasybankGiroCsvParser(unittest.TestCase):
             l.payee, "Some person (AT098765432109876543 ABCDEF1G235)")
         self.assertEqual(l.trntype, "CREDIT")
         self.assertEqual(l.date, datetime.datetime(2014, 2, 28, 0, 0))
+        self.assertEqual(l.id, generate_transaction_id(l))
+
+    def test_line9_memo_starts_with_forward_slash(self):
+        l = self.statement.lines[9]
+        self.assertEqual(l.check_no, "10")
+        self.assertEqual(l.amount, 9.98)
+        self.assertEqual(l.memo, "/INV/123456790 1.10.2015")
+        self.assertEqual(
+            l.payee, "Some company (AT098765432109876543 ABCDEF12345)")
+        self.assertEqual(l.trntype, "CREDIT")
+        self.assertEqual(l.date, datetime.datetime(2015, 10, 7, 0, 0))
         self.assertEqual(l.id, generate_transaction_id(l))
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4 smartindent autoindent
