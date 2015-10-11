@@ -8,7 +8,7 @@ python:
   - "3.5"
 
 install:
-  - pip install -r requirements/travis.txt --use-mirrors
+  - pip install -r requirements/travis.txt
 
 before_script:
   - flake8 src setup.py
