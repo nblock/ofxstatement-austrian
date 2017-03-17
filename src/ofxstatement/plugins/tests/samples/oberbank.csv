@@ -1,0 +1,7 @@
+Buchungsdatum;Wertstellung;Betrag;Währung;Auftraggebername;Auftraggeber IBAN/Kto.Nr.;Auftraggeber BIC/BLZ;Empfängername;Empfänger IBAN/Kto.Nr.;Empfänger BIC/BLZ;Text;Verwendungszweck
+15.03.2017;15.03.2017;-11,00;EUR;;;;;;;Zahlungsreferenz, Empfängername, Adresszeile1, Adresszeile2;
+15.03.2017;15.03.2017;-10,00;EUR;;;;;;;Verwendungszweck, Empfängername, Adresszeile1, Adresszeile2, Verwendungszweck, VerwendungszweckZeile2, VerwendungszweckZeile3, VerwendungszweckZeile4;
+15.03.2017;15.03.2017;-9,00;EUR;;;;;;;End2EndID, Empfängername, Adresszeile1, Adresszeile2;
+15.03.2017;15.03.2017;11,00;EUR;Auftraggebername;AT022050302101023601;PBNKDEFF;Empfängername;AT022050302101023600;PBNKDEFG;Empfängername, SCOR, Verwendungszweck;SCOR Verwendungszweck
+15.03.2017;15.03.2017;10,00;EUR;Auftraggebername;AT022050302101023601;PBNKDEFF;Empfängername Empfängeradresse;AT022050302101023600;PBNKDEFG;Empfängername, SCOR, Verwendungszweck;SCOR Verwendungszweck
+15.03.2017;15.03.2017;9,00;EUR;Auftraggebername;AT022050302101023601;PBNKDEFF;Empfängername Empfängeradresse;AT022050302101023600;PBNKDEFG;Empfängername, SCOR, Verwendungszweck;SCOR Verwendungszweck

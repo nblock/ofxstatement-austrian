@@ -24,5 +24,9 @@ CSV statements from these banks are currently supported:
 * Raiffeisenbank (CSV)
 
   - Giro account
+  
+* Oberbank (CSV)
+
+  - Giro account
 
 .. _ofxstatement: https://github.com/kedder/ofxstatement
