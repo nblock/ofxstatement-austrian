@@ -112,7 +112,7 @@ class TestEasybankGiroCsvParser(unittest.TestCase):
         self.assertEqual(line.check_no, "4")
         self.assertEqual(line.amount, -32)
         self.assertEqual(line.memo, "Abbuchung Einzugsermächtigung")
-        self.assertEqual(line.payee, "Amazon *Mktplce EU-AT (01234567890 01234)")
+        self.assertEqual(line.payee, "Amazon *Mktplce EU-AT (01234567890 01234)")  # noqa: E501
         self.assertEqual(line.trntype, "DEBIT")
         self.assertEqual(line.date, datetime.datetime(2014, 1, 8, 0, 0))
         self.assertEqual(line.id, generate_transaction_id(line))
