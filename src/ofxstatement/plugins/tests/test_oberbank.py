@@ -30,51 +30,51 @@ class TestOberbankCsvParser(unittest.TestCase):
             self.statement.end_date, datetime.datetime(2017, 3, 15, 0, 0))
 
     def test_line0_payment_description_reference(self):
-        l = self.statement.lines[0]
-        self.assertEqual(l.amount, -11.0)
+        line = self.statement.lines[0]
+        self.assertEqual(line.amount, -11.0)
         self.assertEqual(
-            l.memo,
+            line.memo,
             "Zahlungsreferenz, Empfängername, Adresszeile1, Adresszeile2")
-        self.assertEqual(l.trntype, "DEBIT")
-        self.assertEqual(l.date, datetime.datetime(2017, 3, 15, 0, 0))
-        self.assertEqual(l.id, generate_transaction_id(l))
+        self.assertEqual(line.trntype, "DEBIT")
+        self.assertEqual(line.date, datetime.datetime(2017, 3, 15, 0, 0))
+        self.assertEqual(line.id, generate_transaction_id(line))
 
     def test_line1_payment_description_usage(self):
-        l = self.statement.lines[1]
-        self.assertEqual(l.amount, -10.0)
+        line = self.statement.lines[1]
+        self.assertEqual(line.amount, -10.0)
         self.assertEqual(
-            l.memo,
+            line.memo,
             "Verwendungszweck, Empfängername, Adresszeile1, Adresszeile2, "
             "Verwendungszweck, VerwendungszweckZeile2, "
             "VerwendungszweckZeile3, VerwendungszweckZeile4")
-        self.assertEqual(l.trntype, "DEBIT")
-        self.assertEqual(l.date, datetime.datetime(2017, 3, 15, 0, 0))
-        self.assertEqual(l.id, generate_transaction_id(l))
+        self.assertEqual(line.trntype, "DEBIT")
+        self.assertEqual(line.date, datetime.datetime(2017, 3, 15, 0, 0))
+        self.assertEqual(line.id, generate_transaction_id(line))
 
     def test_line2_payment_description_end2end(self):
-        l = self.statement.lines[2]
-        self.assertEqual(l.amount, -9.0)
+        line = self.statement.lines[2]
+        self.assertEqual(line.amount, -9.0)
         self.assertEqual(
-            l.memo,
+            line.memo,
             "End2EndID, Empfängername, Adresszeile1, Adresszeile2")
-        self.assertEqual(l.trntype, "DEBIT")
-        self.assertEqual(l.date, datetime.datetime(2017, 3, 15, 0, 0))
-        self.assertEqual(l.id, generate_transaction_id(l))
+        self.assertEqual(line.trntype, "DEBIT")
+        self.assertEqual(line.date, datetime.datetime(2017, 3, 15, 0, 0))
+        self.assertEqual(line.id, generate_transaction_id(line))
 
     def test_line3_credeit(self):
-        l = self.statement.lines[3]
-        self.assertEqual(l.amount, 11.0)
-        self.assertEqual(l.memo, "Empfängername, SCOR, Verwendungszweck")
-        self.assertEqual(l.trntype, "CREDIT")
-        self.assertEqual(l.date, datetime.datetime(2017, 3, 15, 0, 0))
-        self.assertEqual(l.id, generate_transaction_id(l))
+        line = self.statement.lines[3]
+        self.assertEqual(line.amount, 11.0)
+        self.assertEqual(line.memo, "Empfängername, SCOR, Verwendungszweck")
+        self.assertEqual(line.trntype, "CREDIT")
+        self.assertEqual(line.date, datetime.datetime(2017, 3, 15, 0, 0))
+        self.assertEqual(line.id, generate_transaction_id(line))
 
     def test_line4_credeit(self):
-        l = self.statement.lines[4]
-        self.assertEqual(l.amount, 10.0)
-        self.assertEqual(l.memo, "Empfängername, SCOR, Verwendungszweck")
-        self.assertEqual(l.trntype, "CREDIT")
-        self.assertEqual(l.date, datetime.datetime(2017, 3, 15, 0, 0))
-        self.assertEqual(l.id, generate_transaction_id(l))
+        line = self.statement.lines[4]
+        self.assertEqual(line.amount, 10.0)
+        self.assertEqual(line.memo, "Empfängername, SCOR, Verwendungszweck")
+        self.assertEqual(line.trntype, "CREDIT")
+        self.assertEqual(line.date, datetime.datetime(2017, 3, 15, 0, 0))
+        self.assertEqual(line.id, generate_transaction_id(line))
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4 smartindent autoindent

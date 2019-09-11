@@ -31,33 +31,33 @@ class TestLivebankCsvParser(unittest.TestCase):
             self.statement.end_date, datetime.datetime(2013, 7, 3, 0, 0))
 
     def test_line0_credit(self):
-        l = self.statement.lines[0]
-        self.assertEqual(l.amount, 150.00)
-        self.assertEqual(l.memo, "Datenträger-Umsatz")
+        line = self.statement.lines[0]
+        self.assertEqual(line.amount, 150.00)
+        self.assertEqual(line.memo, "Datenträger-Umsatz")
         self.assertEqual(
-            l.payee, "A name, A text, REF: XXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        self.assertEqual(l.trntype, "CREDIT")
-        self.assertEqual(l.date, datetime.datetime(2013, 7, 3, 0, 0))
-        self.assertEqual(l.id, generate_transaction_id(l))
+            line.payee, "A name, A text, REF: XXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+        self.assertEqual(line.trntype, "CREDIT")
+        self.assertEqual(line.date, datetime.datetime(2013, 7, 3, 0, 0))
+        self.assertEqual(line.id, generate_transaction_id(line))
 
     def test_line1_debit(self):
-        l = self.statement.lines[1]
-        self.assertEqual(l.amount, -100)
-        self.assertEqual(l.memo, "Internetauftrag")
+        line = self.statement.lines[1]
+        self.assertEqual(line.amount, -100)
+        self.assertEqual(line.memo, "Internetauftrag")
         self.assertEqual(
-            l.payee, "A text, A reference, A text")
-        self.assertEqual(l.trntype, "DEBIT")
-        self.assertEqual(l.date, datetime.datetime(2013, 6, 10, 0, 0))
-        self.assertEqual(l.id, generate_transaction_id(l))
+            line.payee, "A text, A reference, A text")
+        self.assertEqual(line.trntype, "DEBIT")
+        self.assertEqual(line.date, datetime.datetime(2013, 6, 10, 0, 0))
+        self.assertEqual(line.id, generate_transaction_id(line))
 
     def test_line2_credit(self):
-        l = self.statement.lines[2]
-        self.assertEqual(l.amount, 5000)
-        self.assertEqual(l.memo, "Datenträger-Umsatz")
+        line = self.statement.lines[2]
+        self.assertEqual(line.amount, 5000)
+        self.assertEqual(line.memo, "Datenträger-Umsatz")
         self.assertEqual(
-            l.payee, "A name, A text, REF: XXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        self.assertEqual(l.trntype, "CREDIT")
-        self.assertEqual(l.date, datetime.datetime(2013, 6, 5, 0, 0))
-        self.assertEqual(l.id, generate_transaction_id(l))
+            line.payee, "A name, A text, REF: XXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+        self.assertEqual(line.trntype, "CREDIT")
+        self.assertEqual(line.date, datetime.datetime(2013, 6, 5, 0, 0))
+        self.assertEqual(line.id, generate_transaction_id(line))
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4 smartindent autoindent

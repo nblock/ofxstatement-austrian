@@ -31,51 +31,51 @@ class TestLivebankCsvParser(unittest.TestCase):
             self.statement.end_date, datetime.datetime(2013, 12, 31, 0, 0))
 
     def test_line0_interest_earned(self):
-        l = self.statement.lines[0]
-        self.assertEqual(l.amount, 12.23)
-        self.assertEqual(l.memo, "Habenzinsen")
-        self.assertEqual(l.trntype, "CREDIT")
-        self.assertEqual(l.date, datetime.datetime(2013, 12, 31, 0, 0))
-        self.assertEqual(l.id, generate_transaction_id(l))
+        line = self.statement.lines[0]
+        self.assertEqual(line.amount, 12.23)
+        self.assertEqual(line.memo, "Habenzinsen")
+        self.assertEqual(line.trntype, "CREDIT")
+        self.assertEqual(line.date, datetime.datetime(2013, 12, 31, 0, 0))
+        self.assertEqual(line.id, generate_transaction_id(line))
 
     def test_line1_interest_paid(self):
-        l = self.statement.lines[1]
-        self.assertEqual(l.amount, -34.56)
-        self.assertEqual(l.memo, "Kapitalertragsteuer")
-        self.assertEqual(l.trntype, "DEBIT")
-        self.assertEqual(l.date, datetime.datetime(2013, 12, 31, 0, 0))
-        self.assertEqual(l.id, generate_transaction_id(l))
+        line = self.statement.lines[1]
+        self.assertEqual(line.amount, -34.56)
+        self.assertEqual(line.memo, "Kapitalertragsteuer")
+        self.assertEqual(line.trntype, "DEBIT")
+        self.assertEqual(line.date, datetime.datetime(2013, 12, 31, 0, 0))
+        self.assertEqual(line.id, generate_transaction_id(line))
 
     def test_line2_credit(self):
-        l = self.statement.lines[2]
-        self.assertEqual(l.amount, 500.00)
-        self.assertEqual(l.memo, "Eingang: XXX")
-        self.assertEqual(l.trntype, "CREDIT")
-        self.assertEqual(l.date, datetime.datetime(2013, 12, 23, 0, 0))
-        self.assertEqual(l.id, generate_transaction_id(l))
+        line = self.statement.lines[2]
+        self.assertEqual(line.amount, 500.00)
+        self.assertEqual(line.memo, "Eingang: XXX")
+        self.assertEqual(line.trntype, "CREDIT")
+        self.assertEqual(line.date, datetime.datetime(2013, 12, 23, 0, 0))
+        self.assertEqual(line.id, generate_transaction_id(line))
 
     def test_line3_transfer_credit(self):
-        l = self.statement.lines[3]
-        self.assertEqual(l.amount, 20.30)
-        self.assertEqual(l.memo, "Umbuchung von 003")
-        self.assertEqual(l.trntype, "CREDIT")
-        self.assertEqual(l.date, datetime.datetime(2013, 9, 25, 0, 0))
-        self.assertEqual(l.id, generate_transaction_id(l))
+        line = self.statement.lines[3]
+        self.assertEqual(line.amount, 20.30)
+        self.assertEqual(line.memo, "Umbuchung von 003")
+        self.assertEqual(line.trntype, "CREDIT")
+        self.assertEqual(line.date, datetime.datetime(2013, 9, 25, 0, 0))
+        self.assertEqual(line.id, generate_transaction_id(line))
 
     def test_line4_debit(self):
-        l = self.statement.lines[4]
-        self.assertEqual(l.amount, -1500)
-        self.assertEqual(l.memo, "Auszahlung - XXX")
-        self.assertEqual(l.trntype, "DEBIT")
-        self.assertEqual(l.date, datetime.datetime(2013, 8, 27, 0, 0))
-        self.assertEqual(l.id, generate_transaction_id(l))
+        line = self.statement.lines[4]
+        self.assertEqual(line.amount, -1500)
+        self.assertEqual(line.memo, "Auszahlung - XXX")
+        self.assertEqual(line.trntype, "DEBIT")
+        self.assertEqual(line.date, datetime.datetime(2013, 8, 27, 0, 0))
+        self.assertEqual(line.id, generate_transaction_id(line))
 
     def test_line5_bonus(self):
-        l = self.statement.lines[5]
-        self.assertEqual(l.amount, 10.00)
-        self.assertEqual(l.memo, "Prämie Foo")
-        self.assertEqual(l.trntype, "CREDIT")
-        self.assertEqual(l.date, datetime.datetime(2013, 8, 13, 0, 0))
-        self.assertEqual(l.id, generate_transaction_id(l))
+        line = self.statement.lines[5]
+        self.assertEqual(line.amount, 10.00)
+        self.assertEqual(line.memo, "Prämie Foo")
+        self.assertEqual(line.trntype, "CREDIT")
+        self.assertEqual(line.date, datetime.datetime(2013, 8, 13, 0, 0))
+        self.assertEqual(line.id, generate_transaction_id(line))
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4 smartindent autoindent
