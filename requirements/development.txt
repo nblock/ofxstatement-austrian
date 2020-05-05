@@ -1,4 +1,4 @@
 -r production.txt
 
-coverage<4
+coverage
 flake8>=2.4.1
